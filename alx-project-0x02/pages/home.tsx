@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Card from "@/components/common/Card"
 import PostModal from "@/components/common/PostModal";
+import Header from "@/components/layout/Header";
 
 type Post = {
   title: string;
@@ -20,6 +21,8 @@ export default function Home() {
 
     return (
         <>
+            <Header/>
+            
             <h1>Home Page</h1>
 
             <button type="button" role="click" onClick={() => setIsModalOpen(true)}>Add New Post</button>
