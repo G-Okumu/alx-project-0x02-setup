@@ -13,3 +13,19 @@ export interface PostProps {
     content: string,
     userId: string
 }
+
+
+export interface UserProps{
+    id:number,
+    name: string,
+    email: string,
+    address: {
+        street: string,
+        suite: string,
+        city: string,
+        geo: {
+            lat: string,
+            lng: string
+        }
+    }
+}

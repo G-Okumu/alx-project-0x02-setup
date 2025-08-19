@@ -1,5 +1,3 @@
-'use client'
-
 import { type PostProps } from "@/interfaces";
 
 export default function PostCard({ title, content, userId }: PostProps) {
