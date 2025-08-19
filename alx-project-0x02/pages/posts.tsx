@@ -1,22 +1,33 @@
-import { useEffect, useState } from "react";
-
 import Header from "@/components/layout/Header";
 import PostCard from "@/components/common/PostCard";
+import { type PostProps } from "@/interfaces";
 
-export default function Posts() {
-    const [extraData, setExtraData] = useState<any>(null);
+type PostsPageProps = {
+  post: PostProps;
+};
 
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos/1')
-            .then(response => response.json())
-            .then(json => setExtraData(json))
-    }, [])
+export default function Posts({ post }: PostsPageProps) {
+    // console.log(post.title);
+    
+  return (
+    <>
+      <Header />
+      <PostCard
+        title={post.title}
+        userId={post.userId}
+        content={post.content}
+      />
+    </>
+  );
+}
 
-    return (
-        <>
-            <Header />
-            <PostCard title={extraData.title} content={extraData.id} userId={extraData.userId}/>
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  const post = await res.json();
 
-        </>
-    )
+  return {
+    props: {
+      post,
+    },
+  };
 }
